@@ -1,0 +1,7 @@
+
+<%= @emprunt.user_id %>
+<%= @emprunt.document_id %>
+
+<% if @current_user && @current_user.admin? %>
+  <%= link_to "Supprimer", @emprunt, method: :delete, data: { confirm: "Confirmer" } %>
+<% end %>

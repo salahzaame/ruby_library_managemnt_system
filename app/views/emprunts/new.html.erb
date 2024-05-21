@@ -1,0 +1,32 @@
+<h1 class="text-center">Nouvel Emprunt</h1>
+
+<div class="d-flex justify-content-center">
+  <main class="form-signin w-50">
+    <%= form_with(model: @emprunt, url: emprunts_path) do |form| %>
+      <% if current_user.admin? %>
+        <div class="field">
+          <%= form.label :user_id %>
+          <%= form.select :user_id, options_for_select(User.all.map { |user| [user.nom, user.id] }), { include_blank: true }, { class: "form-select dropdown-menu dropdown-menu-dark position-static d-grid gap-1 p-2 rounded-3 border-0 shadow" } %>
+        </div>
+      <% end %>
+
+      <div class="field">
+        <%= form.label :document_id %>
+        <%= form.select :document_id, options_for_select(Document.all.map { |document| [document.titre, document.id] }), { include_blank: true }, { class: "form-select dropdown-menu dropdown-menu-dark position-static d-grid gap-1 p-2 rounded-3 border-0 shadow" } %>
+      </div>
+
+      <div class="field">
+        <%= form.label :date_emprunt %>
+        <%= form.date_field :date_emprunt, class: "form-control" %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit "Créer Emprunt", class: "w-100 btn btn-lg btn-primary" %>
+      </div>
+    <% end %>
+  </main>
+</div>
+
+<button class="btn btn-warning rounded-pill px-3" type="button">
+  <%= link_to "Retour", emprunts_path, class: "text-decoration-none text-white"  %>
+</button>

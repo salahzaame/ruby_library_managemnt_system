@@ -1,0 +1,15 @@
+<div class="row p-4 pb-0 pe-lg-0 pt-lg-5  align-items-center rounded-3 shadow-lg" style="background-image: url('<%= asset_path('Visual Novel background commissions.jpeg') %>'); background-size: cover;">
+  <div class="col-lg-6 p-3 p-lg-5 pt-lg-2">
+    <h1 class="display-4 fw-bold lh-1 text-body-emphasis">The best e-Maktaba in Morocco!</h1>
+    <p class="lead">Choose your book, PDF, or even a laptop, and enjoy!</p>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
+      <% if params[:user] %>
+        <p>Welcome, <%= params[:user] %></p>
+        <%= link_to "Log out", "logout", class: "btn btn-primary btn-lg px-4 me-md-2 fw-bold" %>
+      <% else %>
+        <%= link_to "Sign up", "signup", class: "btn btn-primary btn-lg px-4 me-md-2 fw-bold" %>
+        <%= link_to "Log in", "login", class: "btn btn-outline-secondary btn-lg px-4" %>
+      <% end %>
+    </div>
+  </div>
+</div> 

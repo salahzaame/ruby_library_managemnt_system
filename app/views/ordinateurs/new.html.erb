@@ -1,0 +1,40 @@
+<h1 class="text-center">Nouveau Ordinateur</h1>
+
+<div class="d-flex justify-content-center">
+  <main class="form-signin w-50">
+    <% if logged_in? && @current_user.admin? %>
+      <%= form_with(model: @ordinateur, url: ordinateurs_path) do |form| %>
+        <% if @ordinateur.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@ordinateur.errors.count, "error") %> prohibited this ordinateur from being saved:</h2>
+
+            <ul>
+              <% @ordinateur.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <div class="form-floating">
+          <%= form.label :marque %>
+          <%= form.text_field :marque, class: "form-control", placeholder: "Marque" %>
+        </div>
+
+        <div class="form-floating">
+          <%= form.label :modele %>
+          <%= form.text_field :modele, class: "form-control", placeholder: "Modele" %>
+        </div>
+
+        <div class="actions">
+          <%= form.submit "Créer ordinateur", class: "w-100 btn btn-lg btn-primary" %>
+        </div>
+
+      <% end %>
+    <% else %>
+      <p>Vous n'avez pas les droits nécessaires pour ajouter un ordinateur.</p>
+    <% end %>
+  </main>
+</div>
+<button class="btn btn-warning rounded-pill px-3" type="button">
+<%= link_to "Retour", ordinateurs_path , class: "text-decoration-none text-white"%>
+</button>

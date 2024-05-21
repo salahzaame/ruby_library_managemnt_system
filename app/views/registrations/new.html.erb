@@ -1,0 +1,41 @@
+<div class="container col-xl-10 col-xxl-8 px-4 py-5">
+    <div class="row align-items-center g-lg-5 py-5">
+        <div class="col-lg-7 text-center text-lg-start">
+            <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">Vertically centered hero sign-up form</h1>
+            <p class="col-lg-10 fs-4">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+        </div>
+        <div class="col-md-10 mx-auto col-lg-5">
+            <%= form_with(model: @user, url: signup_path, class: "p-4 p-md-5 border rounded-3 bg-body-tertiary") do |form| %>
+                <% if @user.errors.any? %>
+                    <div class="alert alert-danger">
+                        <% @user.errors.full_messages.each do |messages| %>
+                            <p><%= messages %></p>
+                        <% end %>
+                    </div>
+                <% end %>
+                <div class="form-floating mb-3">
+                    <%= form.text_field :nom, class: "form-control", id: "floatingNom", placeholder: "Your name" %>
+                    <%= form.label :nom, "Nom", class: "form-label", for: "floatingNom" %>
+                </div>
+                <div class="form-floating mb-3">
+                    <%= form.text_field :prenom, class: "form-control", id: "floatingPrenom", placeholder: "Your prenom" %>
+                    <%= form.label :prenom, "Prenom", class: "form-label", for: "floatingPrenom" %>
+                </div>
+                <div class="form-floating mb-3">
+                    <%= form.email_field :email, class: "form-control", id: "floatingInput", placeholder: "your email" %>
+                    <%= form.label :email, "Email address", class: "form-label", for: "floatingInput" %>
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+                <div class="form-floating mb-3">
+                    <%= form.password_field :password, class: "form-control", id: "floatingPassword", placeholder: "Password" %>
+                    <%= form.label :password, "Password", class: "form-label", for: "floatingPassword" %>
+                </div>
+                <div class="form-floating mb-3">
+                    <%= form.password_field :password_confirmation, class: "form-control", id: "floatingPasswordConfirmation", placeholder: "Password Confirmation" %>
+                    <%= form.label :password_confirmation, "Password Confirmation", class: "form-label", for: "floatingPasswordConfirmation" %>
+                </div>
+                <%= form.submit "Sign Up", class: "w-100 btn btn-lg btn-primary" %>
+            <% end %>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+<h1 class="text-center">Nouveau Document</h1>
+
+<div class="d-flex justify-content-center">
+  <main class="form-signin w-50">
+    <% if logged_in? && @current_user.admin? %>
+      <%= form_with(model: @document, url: documents_path) do |form| %>
+        <% if @document.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@document.errors.count, "error") %> prohibited this document from being saved:</h2>
+
+            <ul>
+              <% @document.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="form-floating">
+          <%= form.label :titre %>
+          <%= form.text_field :titre, class: "form-control", id: "floatingInput", placeholder: "Titre" %>
+        </div>
+
+        <div class="form-floating">
+          <%= form.label :document_type %>
+          <%= form.text_field :document_type, class: "form-control", id: "floatingPassword", placeholder: "Document Type" %>
+        </div>
+
+        <div class="form-floating">
+          <%= form.label :author %>
+          <%= form.text_field :author, class: "form-control", placeholder: "Author" %>
+        </div>
+
+        <div class="actions">
+          <%= form.submit "Créer Document", class: "w-100 btn btn-lg btn-primary" %>
+        </div>
+      <% end %>
+    <% else %>
+      <p>Vous n'avez pas les droits nécessaires pour ajouter un document.</p>
+    <% end %>
+  </main>
+</div>
+<button class="btn btn-warning rounded-pill px-3" type="button">
+  <%= link_to "Retour", documents_path , class: "text-decoration-none text-white" %>
+</button>
+
